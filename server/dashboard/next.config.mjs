@@ -1,4 +1,4 @@
-/** @type {import('next').NextConfig} */
+/** @type {import(next).NextConfig} */
 const nextConfig = {
   output: "standalone",
   eslint: {
@@ -33,6 +33,39 @@ const nextConfig = {
         source: "/settings",
         destination: "/dashboard/settings",
         permanent: false,
+      },
+    ];
+  },
+  async rewrites() {
+    const apiUrl = "http://mem0:8000";
+    return [
+      {
+        source: "/auth/:path*",
+        destination: `${apiUrl}/auth/:path*`,
+      },
+      {
+        source: "/memories/:path*",
+        destination: `${apiUrl}/memories/:path*`,
+      },
+      {
+        source: "/search/:path*",
+        destination: `${apiUrl}/search/:path*`,
+      },
+      {
+        source: "/configure/:path*",
+        destination: `${apiUrl}/configure/:path*`,
+      },
+      {
+        source: "/api-keys/:path*",
+        destination: `${apiUrl}/api-keys/:path*`,
+      },
+      {
+        source: "/requests/:path*",
+        destination: `${apiUrl}/requests/:path*`,
+      },
+      {
+        source: "/entities/:path*",
+        destination: `${apiUrl}/entities/:path*`,
       },
     ];
   },
